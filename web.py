@@ -7,7 +7,10 @@ def uploadSensorValues(temp, hum, press):
 
     headers = {'content-type': 'application/json'}
 
-    sensorsdata = {'datetime':datetime.now().strftime("%Y/%m/%d %H:%M:%S"),'temp':temp,'hum':hum,'press':press}
+    sensorsdata = {'datetime':datetime.now().strftime("%Y/%m/%d %H:%M:%S"),
+                   'temp':temp,
+                   'hum':hum,
+                   'press':press}
 
     res = requests.post( url, headers=headers, json=sensorsdata, verify=False)
 
