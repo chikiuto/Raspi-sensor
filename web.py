@@ -1,7 +1,7 @@
 import requests
 from datetime import datetime
 
-def uploadSensorValues(temp, hum, press):
+def uploadSensorValues(temp, hum, press, machine):
 
     url = 'http://127.0.0.1:8080/sensvalues.php'
 
@@ -10,7 +10,10 @@ def uploadSensorValues(temp, hum, press):
     sensorsdata = {'datetime':datetime.now().strftime("%Y/%m/%d %H:%M:%S"),
                    'temp':temp,
                    'hum':hum,
-                   'press':press}
+                   'press':press,
+                   'machine':machine
+                   
+                   }
 
     res = requests.post( url, headers=headers, json=sensorsdata, verify=False)
 
@@ -19,7 +22,7 @@ def uploadSensorValues(temp, hum, press):
     pass
 
 def main():
-    uploadSensorValues(11.9, 77.7, 5555)
+    uploadSensorValues(11.9, 77.7, 5555, "tokichi")
  
 if __name__ == '__main__':
     main()

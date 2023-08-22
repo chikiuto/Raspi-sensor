@@ -1,7 +1,7 @@
 <?php
 
 $host = 'mysql5.7';
-$db = 'raspisens';
+$db = 'raspi';
 $charset = 'utf8';
 $dsn = "mysql:host=$host; dbname=$db; charset=$charset";
 
@@ -23,7 +23,8 @@ switch ( $_SERVER['REQUEST_METHOD'] ) {
         $in = json_decode(file_get_contents('php://input'), true);
         if (!isset($in['id']))
         {
-            $st = $pdo->prepare("INSERT INTO sensorvalues(datetime,temp,hum,press) VALUES(:datetime,:temp,:hum,:press)");
+            $st = $pdo->prepare("INSERT INTO sensorvalues(datetime,temp,hum,press,machine)
+                                 VALUES(:datetime,:temp,:hum,:press,:machine)");
         }
         $st->execute($in);
         
