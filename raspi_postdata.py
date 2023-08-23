@@ -47,21 +47,22 @@ print("tmp: " + str(tmp))
 time.sleep(1)
 
 
-def uploadSensorValues(tmp, hum, press):
-
+def uploadSensorValues(tmp, hum, press, name):
+    # url にセンターのパソコンのIPアドレスを入れる
     url = 'http://127.000.00.00:8080/sensvalues.php'
     headers = { 'content-type': 'application/json' }
     sensorsdata = {'datetime':datetime.now().strftime("%Y/%m/%d %H:%M:%S"),
                    'temp':tmp,
                    'hum':hum,
-                   'press':press}
+                   'press':press,
+                   'name':name}
     res = requests.post( url, headers=headers, json=sensorsdata, verify=False )
     print ( sensorsdata )
     print ( res.text )
     pass
 
 def main():
-    uploadSensorValues( tmp, hum, 5555 )
+    uploadSensorValues( tmp, hum, 5555, 'nyaaaaaaaaa' )
  
 if __name__ == '__main__':
     main()
